@@ -1,0 +1,19 @@
+.full-width {
+  width: 100%;
+}
+
+img {
+  background-color: #66686b;
+  width: 70%;
+  height: 300px;
+}
+
+.col-md-6 {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 320px) {
+  .col-md-6 {
+    margin: 5px;
+  }
+}

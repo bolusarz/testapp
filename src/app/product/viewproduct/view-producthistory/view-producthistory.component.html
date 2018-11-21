@@ -1,0 +1,86 @@
+<div *ngIf="products">
+<mat-accordion >
+  <mat-expansion-panel *ngFor="let date of dates | paginate: { itemsPerPage: 4, currentPage: p, id: 'product'}">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ date }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="row mt-3" *ngFor="let item of getProducts(date)">
+
+      <div class="col-md-6">
+        Product name
+      </div>
+
+      <div class="col-md-6">
+        {{ item.product_name }}
+      </div>
+
+
+      <div class="col-md-6">
+        Quantity
+      </div>
+
+      <div class="col-md-6">
+        {{ item.quantity }}
+      </div>
+
+      <div class="col-md-6">
+        Price Bought
+      </div>
+
+      <div class="col-md-6">
+        {{ item.price }}
+      </div>
+
+      <div class="col-md-6">
+        Product Measure
+      </div>
+
+      <div class="col-md-6">
+        {{ item.product_measure }}
+      </div>
+
+      <div class="col-md-6">
+        Category
+      </div>
+
+      <div class="col-md-6">
+        {{ item.category }}
+      </div>
+
+      <div class="col-md-6">
+        Brand
+      </div>
+
+      <div class="col-md-6">
+        {{ item.brand }}
+      </div>
+
+
+    <div class="col-md-6">
+      Time Updated
+    </div>
+
+    <div class="col-md-6">
+      {{ item.time_added }}
+    </div>
+
+
+      <div class="col-md-6">
+        User
+      </div>
+
+      <div class="col-md-6">
+        {{ item.user }}
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<pagination-controls id="product"
+                     (pageChange)="p = $event"
+                     [responsive]="true"
+                     [directionLinks]="true"
+                     class="paginate"> </pagination-controls>
+</div>

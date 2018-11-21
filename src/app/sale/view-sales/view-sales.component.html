@@ -1,0 +1,111 @@
+<div class="mb-2">
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="date" title="date"
+         placeholder="Select a date to view the sales from that day" (dateInput)="getParticularSale()">
+  <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+  <mat-datepicker #picker startView="month" color="primary" [touchUi]="true"> </mat-datepicker>
+</mat-form-field>
+</div>
+
+<div class="col-md-12 mt-3" *ngIf="sales" >
+  <div class="card card-plain mb-2" *ngIf="sales.product">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title mt-0">Product Sales</h4>
+    </div>
+    <div class="card-body" >
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="">
+          <th> ID </th>
+          <th> Products </th>
+          <th> Total price </th>
+          <th> Customer </th>
+          <th> Amount Paid </th>
+          <th> Status </th>
+          <th> Date Added </th>
+          <th> Time Added </th>
+          <th> User </th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sale of sales.product| paginate: {itemsPerPage: 5,
+    currentPage: p, totalItems: sales.product.length, id: 'product'}">
+            <td> {{ sale.id }} </td>
+            <td> {{ sale.products}} </td>
+            <td> {{ sale.total_price }} </td>
+            <td> {{ sale.customer_name }} </td>
+            <td> {{ sale.amount_paid }} </td>
+            <td> {{ sale.status }} </td>
+            <td> {{ sale.date_added }} </td>
+            <td> {{ sale.time_added }} </td>
+            <td> {{ sale.user }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"
+                       [responsive]="true"
+                       [directionLinks]="true"
+                       *ngIf="sales.service"
+                       id="product"
+                       class="paginate"> </pagination-controls>
+
+  <div class="card card-plain mt-4" *ngIf="sales.service">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title mt-0">Services</h4>
+    </div>
+    <div class="card-body" >
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="">
+          <th> ID </th>
+          <th> Services </th>
+          <th>Amount Paid</th>
+          <th> Total price </th>
+          <th> Customer Name</th>
+          <th> Customer Email </th>
+          <th> Customer Phone No. </th>
+          <th> Discount</th>
+          <th> Status </th>
+          <th> Date Added </th>
+          <th> Time Added </th>
+          <th> User </th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sale of sales.service | paginate: {itemsPerPage: 5, currentPage: pc, id: 'service'}">
+            <td> {{ sale.id }} </td>
+            <td> {{ sale.services}} </td>
+            <td> {{ sale.amount_paid }} </td>
+            <td> {{ sale.total_price }} </td>
+            <td> {{ sale.customer_name }} </td>
+            <td> {{ sale.customer_email }} </td>
+            <td> {{ sale.customer_phonenumber }} </td>
+            <td> {{ sale.discount }} </td>
+            <td> {{ sale.status }} </td>
+            <td> {{ sale.date_added }} </td>
+            <td> {{ sale.time_added }} </td>
+            <td> {{ sale.user }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="pc = $event"
+                       [responsive]="true"
+                       [directionLinks]="true"
+                       id="service"
+                       class="paginate"
+                      *ngIf="sales.service"> </pagination-controls>
+</div>
+
+<h3 *ngIf="!sales.product && !sales.service"> There are no sales for {{ date.toLocaleDateString('en-GB', options) }} </h3>
+
+
+<ngx-spinner
+  bdColor = "rgba(51,51,51,0.05)"
+  size = "large"
+  color = "#721251"
+  type = "ball-clip-rotate-multiple"
+> </ngx-spinner>

@@ -1,0 +1,53 @@
+<div class="row" *ngIf="services">
+  <div
+    *ngFor="let item of services | paginate: {itemsPerPage: 4,
+    currentPage: p, totalItems: services.length}"
+    class="col-lg-3 col-md-6 p-2">
+
+    <div class="card card-profile">
+      <div class="card-body">
+        <h6 class="card-category text-gray"> Service </h6>
+        <hr class="text-gray">
+        <h6 class="card-title">{{ item.service_name }}</h6>
+        <h6 class="card-category text-gray"> Price </h6>
+        <hr class="text-gray">
+        <h5 class="card-title">{{ item.price }}</h5>
+      </div>
+      <div class="btn-group btn-group-lg">
+
+        <button type="button" rel="tooltip" title="Edit Service" class="btn btn-info btn-link btn-lg"
+                (click)="edit(item)">
+          <i class="material-icons"> edit </i>
+        </button>
+
+        <button type="button" rel="tooltip" title="View Service " class="btn btn-rose btn-link btn-lg"
+                (click)="view_history(item)">
+          <i class="fa fa-history"> </i>
+        </button>
+
+        <button type="button" rel="tooltip" title="Delete Service" class="btn btn-danger btn-link btn-lg"
+                (click)="delete(item)">
+          <i class="fa fa-trash"> </i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"
+                       [responsive]="true"
+                       [directionLinks]="true"
+                       class="paginate"
+                       *ngIf="services"> </pagination-controls>
+</div>
+
+<div *ngIf="!services">
+  <h3>It seems that you don't have any services registered now.</h3>
+  <a [routerLink]="['../product/view-services']"> Add a service now. </a>
+</div>
+
+<ngx-spinner
+  bdColor = "rgba(51,51,51,0.05)"
+  size = "large"
+  color = "#721251"
+  type = "ball-clip-rotate-multiple"
+> </ngx-spinner>

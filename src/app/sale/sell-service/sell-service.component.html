@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <mat-card>
+    <mat-card-title>Offer Service</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="service_saleform">
+
+        <!-- Service name -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Service name</mat-label>
+          <mat-select placeholder="my product" [formControl]="service_saleform.controls['service_name']" (selectionChange)="calculate()" multiple>
+            <mat-option *ngFor="let service of services" [value]="service"> {{ service.service_name }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Discount-->
+        <mat-form-field class="full-width " appearance="outline">
+          <mat-label>Discount</mat-label>
+          <input type="number" matInput [formControl]="service_saleform.controls['discount']" title="discount" (change)="calculate()">
+        </mat-form-field>
+
+        <mat-checkbox (change)="assign()" color="primary" [disabled]="service_saleform.controls['service_name'].invalid
+                                                      || service_saleform.controls['discount'].invalid">Same as Total Price</mat-checkbox>
+
+        <!-- Amount Paid -->
+        <mat-form-field class="full-width " appearance="outline">
+          <mat-label>Amount Paid</mat-label>
+          <input type="number" matInput [formControl]="service_saleform.controls['amount_paid']" title="amount_paid">
+        </mat-form-field>
+
+        <!-- Customer -->
+        <div formGroupName="customer">
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Customer Name</mat-label>
+            <input type="text" matInput formControlName="name" title="name">
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Customer Email</mat-label>
+          <input type="email" matInput formControlName="email" title="email">
+        </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Customer Phone number</mat-label>
+            <input type="number" matInput formControlName="phone_number" title="number">
+          </mat-form-field>
+
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button
+                    [disabled]='service_saleform.invalid'
+                    class="full-width btn-primary"
+                    (click)="save(service_saleform.value)">Save</button>
+          </div>
+
+          <div class="col-md-6">
+            <button mat-raised-button class="full-width btn-danger" (click)="cancel()">Cancel</button>
+          </div>
+
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -1,0 +1,23 @@
+<div class="card card-chart">
+    <div class="card-header card-header-success">
+      <div class="ct-chart">
+        <canvas baseChart [datasets]="ChartData" width="200" height="100"
+                [labels]="ChartLabels" [options]="ChartOptions"
+                [chartType]="ChartType" [colors]="ChartColors">
+        </canvas>
+
+      </div>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Daily Sales</h4>
+      <p class="card-category" >
+      <span [ngClass]="{'text-success': status==='increase', 'text-error': status==='decrease'}">
+        <i class="fa" [ngClass]="{'fa-long-arrow-up': status==='increase', 'fa-long-arow-down': status==='decrease'}">
+        </i> {{ increase }}% </span> {{status}} in today sales.</p>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="material-icons">access_time</i> campaign sent 2 days ago
+      </div>
+    </div>
+  </div>

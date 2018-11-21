@@ -1,0 +1,95 @@
+<div class="row">
+  <!--View product by category-->
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <a class="card card-stats" [routerLink]="['by-category']">
+      <div class="card-header card-header-primary card-header-icon">
+        <div class="card-icon">
+          <i class="fa fa-eye"> </i>
+        </div>
+        <h5 class="card-title">View Product By Category</h5>
+      </div>
+    </a>
+  </div>
+
+  <!-- View product by Brand -->
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <a class="card card-stats" [routerLink]="['by-brand']">
+      <div class="card-header card-header-primary card-header-icon">
+        <div class="card-icon">
+          <i class="fa fa-eye"> </i>
+        </div>
+        <h5 class="card-title">View Product By Brand</h5>
+      </div>
+    </a>
+  </div>
+
+
+</div>
+
+
+<div class="row" *ngIf="products">
+  <div
+    *ngFor="let item of products | paginate: {itemsPerPage: 4,
+    currentPage: p, totalItems: products.length}"
+    class="col-lg-3 col-md-6 p-2">
+
+    <div class="card card-profile">
+      <div class="card-avatar">
+          <img class="img" [src]="item.picture" />
+      </div>
+
+    <div class="card-body">
+      <h6 class="card-category text-gray"> Category </h6>
+      <hr class="text-gray">
+      <h6 class="card-title">{{ item.category }}</h6>
+      <h6 class="card-category text-gray"> Product Name</h6>
+      <hr class="text-gray">
+      <h5 class="card-title">{{ item.product_name }}</h5>
+    </div>
+      <div class="btn-group">
+
+          <button type="button" rel="tooltip" title="View Product" class="btn btn-primary btn-link btn-sm btn-just-icon"
+                  (click)="viewSingleProduct(item)">
+            <i class="fa fa-eye"> </i>
+          </button>
+
+          <button type="button" rel="tooltip" title="Edit Product" class="btn btn-info btn-link btn-sm btn-just-icon"
+                  (click)="edit(item)">
+            <i class="material-icons"> edit </i>
+          </button>
+
+          <button type="button" rel="tooltip" title="View Product History" class="btn btn-rose btn-link btn-sm btn-just-icon"
+                  (click)="view_history(item.productkey)">
+            <i class="material-icons">dashboard</i>
+          </button>
+
+          <button type="button" rel="tooltip" title="Delete Product" class="btn btn-danger btn-link btn-sm btn-just-icon"
+                  (click)="delete(item)">
+            <i class="fa fa-trash"> </i>
+          </button>
+
+          <button type="button" rel="tooltip" title="View Product Sale's History" class="btn btn-danger btn-link btn-sm btn-just-icon"
+                  (click)="view_sale(item.productkey)">
+            <i class="fa fa-bank"> </i>
+          </button>
+
+      </div>
+
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"
+                       [responsive]="true"
+                       [directionLinks]="true"
+                       previousLabel="Previous"
+                       nextLabel="Next" class="paginate"
+                       *ngIf="products"> </pagination-controls>
+</div>
+
+<h3 *ngIf="!products"> There are no products currently <a [routerLink]="['../product/add-product']"> Add new Product </a></h3>
+
+<ngx-spinner
+  bdColor = "rgba(51,51,51,0.05)"
+  size = "large"
+  color = "#721251"
+  type = "ball-clip-rotate-multiple"
+> </ngx-spinner>

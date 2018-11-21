@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'assets/css/bootstrap.min.css';
+
+
+html, body{
+  height: 100%;
+  margin: 0;
+  background-color: rgba(204, 204, 204, 0.15);
+}
+
+.paginate {
+  margin: 10px auto;
+  width: 70%;
+}
+
+.full-width {
+  width: 100%;
+}

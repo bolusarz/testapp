@@ -1,0 +1,57 @@
+<div class="mb-2">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" title="date"
+           placeholder="Select a date to view the sales from that day" (dateInput)="getParticularSale()">
+    <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+    <mat-datepicker #picker startView="month" color="primary"> </mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="col-md-12 mt-3" *ngIf="sales" >
+  <div class="card card-plain">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title mt-0" *ngIf="sales"> Sales for {{ sales[0].product_name}}</h4>
+      <p class="card-category"> Here is your sales for today</p>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="">
+          <th> Quantity </th>
+          <th> Sales Measure </th>
+          <th> Price </th>
+          <th> Date Added </th>
+          <th> Time Added </th>
+          <th> User </th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sale of sales | paginate: {itemsPerPage: 10,
+    currentPage: p}">
+            <td> {{ sale.quantity}} </td>
+            <td> {{ sale.sales_measure }} </td>
+            <td> {{ sale.price }} </td>
+            <td> {{ sale.date_added }} </td>
+            <td> {{ sale.time_added }} </td>
+            <td> {{ sale.user }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"
+                       [responsive]="true"
+                       [directionLinks]="true"
+                       class="paginate"> </pagination-controls>
+</div>
+
+<h3 *ngIf="!sales">There are no sales for this particular product on {{ date }}</h3>
+
+
+
+<ngx-spinner
+  bdColor = "rgba(51,51,51,0.05)"
+  size = "large"
+  color = "#721251"
+  type = "ball-clip-rotate-multiple"
+> </ngx-spinner>

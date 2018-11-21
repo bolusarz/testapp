@@ -1,0 +1,25 @@
+<h2 mat-dialog-title> Edit Service </h2>
+<mat-dialog-content>
+  <form [formGroup]="editserviceform">
+
+    <!-- Service product_name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Service name</mat-label>
+      <input matInput placeholder="my product" [formControl]="editserviceform.controls['service_name']">
+    </mat-form-field>
+
+    <!-- Service Price -->
+    <mat-form-field class="full-width " appearance="outline">
+      <mat-label>Price</mat-label>
+      <input type="number" matInput [formControl]="editserviceform.controls['price']" title="product-price">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button
+          [disabled]="editserviceform.invalid"
+          class="btn-primary"
+          (click)="save(editserviceform.value)">Save</button>
+  <button mat-raised-button class="btn-danger" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

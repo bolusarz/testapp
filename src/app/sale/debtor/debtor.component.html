@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header card-header-primary">
+    <h4 class="card-title">Employees </h4>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-hover">
+      <thead class="text-warning">
+      <th>Name</th>
+      <th>Amount Owed</th>
+      <th>Date Owed</th>
+      <th> </th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let debt of debtors">
+        <td>{{ debt.name }}</td>
+        <td>{{ debt.amount_owed }}</td>
+        <td>{{ debt.date_owed }}</td>
+        <td class="td-actions text-right">
+          <button type="button" rel="tooltip" title="Remove User" class="btn btn-danger btn-link btn-lg"
+                  (click)="clear(debt)">
+            Clear Debt
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

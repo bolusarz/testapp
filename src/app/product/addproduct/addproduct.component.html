@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <mat-card>
+    <mat-card-title>Add A Product</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="productform" #f="ngForm">
+      <div class="row">
+        <div class="col-md-6">
+        <!-- product_name -->
+          <mat-form-field class="full-width">
+            <mat-label>Product name</mat-label>
+            <input matInput placeholder="my product" [formControl]="productform.controls['product_name']" [errorStateMatcher]="matcher">
+          </mat-form-field>
+
+        <!-- Price -->
+          <mat-form-field class="full-width">
+            <mat-label>Cost Price</mat-label>
+            <input type="text" matInput [formControl]="productform.controls['price']" title="product-price" [errorStateMatcher]="matcher">
+            <mat-hint>Total amount spent on purchasing </mat-hint>
+          </mat-form-field>
+
+        <!-- Category -->
+          <mat-form-field class="full-width">
+            <mat-label>Category</mat-label>
+            <input matInput type="text" [formControl]="productform.controls['category']" title="category" list="categories">
+            <datalist id="categories">
+              <option *ngFor="let data of categories | async" value="{{ data.category_name }}">  </option>
+            </datalist>
+          </mat-form-field>
+
+
+
+        <!-- Brand -->
+          <mat-form-field class="full-width">
+            <mat-label>Brand</mat-label>
+            <input matInput type="text" [formControl]="productform.controls['brand']" title="brand" list="brands">
+            <datalist id="brands">
+              <option *ngFor="let data of brands | async" value="{{ data.brand_name }}">  </option>
+            </datalist>
+            <mat-hint>This is used to differentiate between products of the same type</mat-hint>
+          </mat-form-field>
+
+
+        <!-- Product Measure -->
+          <mat-form-field class="full-width">
+            <mat-label>Product Measure</mat-label>
+            <mat-select [formControl]="productform.controls['product_measure']" >
+              <mat-option *ngFor="let item of measure" [value]="item.value">
+                {{item.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>How did you buy the product</mat-hint>
+          </mat-form-field>
+
+
+        <!-- Quantity -->
+          <mat-form-field class="full-width">
+            <mat-label>Quantity bought</mat-label>
+            <input type="text" matInput [formControl]="productform.controls['quantity']" title="product-amount" placeholder="How many was bought">
+          </mat-form-field>
+
+        <!-- Quantity in Pieces -->
+          <mat-form-field class="full-width" *ngIf="f.value.product_measure !== null && f.value.product_measure !== 'Pieces'">
+            <mat-label>Quantity In Pieces</mat-label>
+            <input type="text" matInput [formControl]="productform.controls['quantity_pieces']" title="product-amount" placeholder="How many is in a pack">
+          </mat-form-field>
+
+        <!-- Selling Price -->
+          <mat-form-field class="full-width">
+            <mat-label>Selling price</mat-label>
+            <input matInput type="text" [formControl]="productform.controls['selling_price']" title="selling price">
+          </mat-form-field>
+      </div>
+        <div class="col-md-6 p-2">
+          <img [src]="url">
+          <input type="file" (change)="upload($event)">
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <button mat-raised-button
+                    [disabled]='productform.invalid'
+                    class="full-width btn-primary"
+                    (click)="save(productform.value)">Save</button>
+          </div>
+
+          <div class="col-md-4">
+            <button mat-raised-button
+                    [disabled]='productform.invalid'
+                    class="full-width btn-primary"
+                    (click)="save_and_addanother(productform.value)">Save and add another</button>
+          </div>
+
+          <div class="col-md-4">
+            <button mat-raised-button class="full-width btn-danger" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ngx-spinner
+  bdColor = "rgba(51,51,51,0.05)"
+  size = "large"
+  color = "#721251"
+  type = "timer"
+> </ngx-spinner>

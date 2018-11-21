@@ -1,0 +1,27 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let category of categories | paginate: {itemsPerPage: 4, currentPage: pc, id: 'category', totalItems: categories.length}"
+                        (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ category.category_name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item *ngFor="let product of getProducts(category) | paginate: {itemsPerPage: 2, currentPage: p, id: 'product', totalItems: getProducts(category).length}">
+        {{ product.product_name }}
+      </mat-list-item>
+    </mat-list>
+    <pagination-controls id="product"
+                         (pageChange)="p = $event"
+                         [responsive]="true"
+                         [directionLinks]="true"
+                         previousLabel="Previous"
+                         nextLabel="Next" class="paginate"> </pagination-controls>
+  </mat-expansion-panel>
+</mat-accordion>
+<pagination-controls id="category"
+                     (pageChange)="pc = $event"
+                     [responsive]="true"
+                     [directionLinks]="true"
+                     previousLabel="Previous"
+                     nextLabel="Next" class="paginate"> </pagination-controls>

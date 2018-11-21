@@ -1,0 +1,79 @@
+<div class="container-fluid bg">
+  <div class="card">
+    <div class="card-header card-header-primary">
+      <h1 class="card-title">REGISTER</h1>
+    </div>
+
+    <mat-card-content class="card-body">
+
+      <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)">
+
+        <!--First product_name-->
+        <mat-form-field>
+          <input matInput formControlName="fname" type="text" placeholder="Firstname">
+          <mat-error *ngFor="let validate of valid_msg.fname">
+            <mat-error class="error-message" *ngIf="regForm.get('fname').hasError(validate.type) && (regForm.get('fname').dirty || regForm.get('fname').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Surname-->
+        <mat-form-field>
+          <input matInput formControlName="sname" type="text" placeholder="Surname">
+          <mat-error *ngFor="let validate of valid_msg.sname">
+            <mat-error class="error-message" *ngIf="regForm.get('sname').hasError(validate.type) && (regForm.get('sname').dirty || regForm.get('sname').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Email-->
+        <mat-form-field>
+          <input matInput formControlName="email" type="text" placeholder="Email">
+          <mat-error *ngFor="let validate of valid_msg.sname">
+            <mat-error class="error-message" *ngIf="regForm.get('sname').hasError(validate.type) && (regForm.get('sname').dirty || regForm.get('sname').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Phone number-->
+        <mat-form-field>
+          <input matInput formControlName="number" type="text" placeholder="Phone number">
+          <mat-error *ngFor="let validate of valid_msg.sname">
+            <mat-error class="error-message" *ngIf="regForm.get('number').hasError(validate.type) && (regForm.get('number').dirty || regForm.get('number').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Password-->
+        <mat-form-field>
+          <input matInput formControlName="pwd" type="password" placeholder="Password">
+          <mat-error *ngFor="let validate of valid_msg.pwd">
+            <mat-error class="error-message" *ngIf="regForm.get('pwd').hasError(validate.type) && (regForm.get('pwd').dirty || regForm.get('pwd').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Confirm Password-->
+        <mat-form-field>
+          <input matInput formControlName="cpwd" type="password" placeholder="Confirm Password" >
+          <mat-error *ngFor="let validate of valid_msg.cpwd">
+            <mat-error class="error-message" *ngIf="regForm.get('cpwd').hasError(validate.type) && (regForm.get('cpwd').dirty || regForm.get('cpwd').touched)">{{validate.message}}
+            </mat-error>
+          </mat-error>
+          <mat-error *ngIf="regForm.get('cpwd')?.errors?.notEquivalent">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button [disabled]='regForm.invalid' class="btn btn-primary">Submit</button>
+      </form>
+    </mat-card-content>
+  </div>
+
+  <ngx-spinner
+    bdColor = "rgba(51,51,51,0.05)"
+    size = "large"
+    color = "#721251"
+    type = "timer"
+  > </ngx-spinner>
+</div>

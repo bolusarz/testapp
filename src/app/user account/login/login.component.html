@@ -1,0 +1,48 @@
+<div class="bg">
+  <mat-card>
+      <div class="row contain">
+          <div class="col-md-6 ">
+            <div class="container">
+            <img src="../../../assets/img/business1.jpg" class="img-fluid">
+            <div class="centered">
+              <p class="display-3">Not Registered? <a [routerLink]="['../register']">Sign Up</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mat-card-header>
+            <h1>Login</h1>
+          </mat-card-header>
+          <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+            <!-- Email Address -->
+            <mat-form-field>
+              <input placeholder="email" matInput formControlName="email" />
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field>
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+            <div class="row">
+              <div class="col-6">
+                <a (click)="forgotPassword()" class="card-subtitle">Forgot Password</a>
+              </div>
+              <div class="col-6">
+                <button type="submit" mat-raised-button [disabled]="authForm.invalid" class="btn btn-primary float-right">Log in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </mat-card>
+  <ngx-spinner
+    bdColor = "rgba(51,51,51,0.05)"
+    size = "large"
+    color = "#721251"
+    type = "ball-clip-rotate-multiple"
+  > </ngx-spinner>
+</div>
+
+
+

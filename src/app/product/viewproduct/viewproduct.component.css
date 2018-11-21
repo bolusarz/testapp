@@ -1,0 +1,14 @@
+hr {
+  border: 1px solid #eee;
+  width: 30%;
+}
+.card-category {
+  margin-bottom: 0;
+}
+button {
+  border: none;
+}
+
+.btn-group {
+  margin: auto;
+}

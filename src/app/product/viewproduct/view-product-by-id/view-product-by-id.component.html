@@ -1,0 +1,99 @@
+<mat-dialog-content>
+  <div class="row">
+
+    <div class="col-md-6">
+      Product name
+    </div>
+
+    <div class="col-md-6">
+      {{ product.product_name }}
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Quantity
+    </div>
+
+    <div class="col-md-6">
+      {{ product.quantity | FormatQuantity:product.total_pieces:product.quantity_pieces:product.product_measure}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Price Bought
+    </div>
+
+    <div class="col-md-6">
+      {{ product.price }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Product Measure
+    </div>
+
+    <div class="col-md-6">
+      {{ product.product_measure }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Quantity in Pieces
+    </div>
+
+    <div class="col-md-6">
+      {{ product.quantity_pieces }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Category
+    </div>
+
+    <div class="col-md-6">
+      {{ product.category }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Brand
+    </div>
+
+    <div class="col-md-6">
+      {{ product.brand }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Date added
+    </div>
+
+    <div class="col-md-6">
+      {{ product.date_added }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      User
+    </div>
+
+    <div class="col-md-6">
+      {{ product.user }}
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button type="button" class="btn btn-warning btn-link btn-lg" (click)="close()"> <i class="material-icons"> close </i></button>
+</mat-dialog-actions>
+
+

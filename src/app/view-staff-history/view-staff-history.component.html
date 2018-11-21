@@ -1,0 +1,87 @@
+<mat-card>
+  <mat-card-header> {{query.user}}</mat-card-header>
+
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Product Sales">
+          <div class="card-body" *ngIf="details.product">
+            <table class="table table-hover">
+              <thead class="">
+              <th> Products </th>
+              <th> Amount Paid </th>
+              <th> Total Price </th>
+              <th> Customer </th>
+              <th>Discount</th>
+              <th> Remark </th>
+              <th> Status </th>
+              <th> Date Added </th>
+              <th> Time Added </th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let product of details.product| paginate: {itemsPerPage: 5,
+    currentPage: p, id: 'product'}">
+                <td> {{ product.products}} </td>
+                <td> {{ product.amount_paid }} </td>
+                <td> {{ product.total_price }} </td>
+                <td> {{ product.customer_name }} </td>
+                <td> {{ product.discount }} </td>
+                <td> {{ product.remark }} </td>
+                <td> {{ product.status }} </td>
+                <td> {{ product.date_added }} </td>
+                <td> {{ product.time_added }} </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        <pagination-controls (pageChange)="p = $event"
+                             [responsive]="true"
+                             [directionLinks]="true"
+                             id="product"
+                             *ngIf="details.product"
+                             class="paginate"> </pagination-controls>
+      </mat-tab>
+      <mat-tab label="Service">
+        <div class="card-body" *ngIf="details.service">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="">
+              <th> ID </th>
+              <th> Services </th>
+              <th>Amount Paid</th>
+              <th> Total price </th>
+              <th> Customer Name</th>
+              <th> Customer Email </th>
+              <th> Customer Phone No. </th>
+              <th> Discount</th>
+              <th> Status </th>
+              <th> Date Added </th>
+              <th> Time Added </th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let service of details.service | paginate: {itemsPerPage: 5, currentPage: pc, id: 'service'}">
+                <td> {{ service.id }}</td>
+                <td> {{ service.services}}</td>
+                <td> {{ service.amount_paid }}</td>
+                <td> {{ service.total_price }}</td>
+                <td> {{ service.customer_name }}</td>
+                <td> {{ service.customer_email }}</td>
+                <td> {{ service.customer_phonenumber }}</td>
+                <td> {{ service.discount }}</td>
+                <td> {{ service.status }}</td>
+                <td> {{ service.date_added }}</td>
+                <td> {{ service.time_added }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <pagination-controls (pageChange)="pc = $event"
+                             [responsive]="true"
+                             [directionLinks]="true"
+                             id="service"
+                             *ngIf="details.service"
+                             class="paginate"> </pagination-controls>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

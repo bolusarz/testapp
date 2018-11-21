@@ -1,0 +1,74 @@
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.display-3 {
+  font-weight: bold;
+}
+p a {
+  color: #521252;
+}
+
+p a:hover {
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+mat-card {
+  width: 70%;
+  margin: 20px auto;
+  height: min-content;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.col-md-6:nth-child(2) {
+  padding: 15px;
+}
+
+button {
+  margin-right: 5px;
+}
+
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-size: cover;
+  /*background: url("../../../assets/img/business2.jpg") no-repeat;*/
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px){
+  mat-card {
+    padding: 0;
+    width: 100%;
+    margin: 5px;
+  }
+
+  .col-md-6 {
+    margin-bottom: 10px;
+  }
+
+  .col-md-6:nth-child(2) {
+    padding: 25px;
+  }
+
+
+}
